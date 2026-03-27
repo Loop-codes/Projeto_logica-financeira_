@@ -72,9 +72,6 @@ public class Transacao {
         this.data = data;
     }
 
-    public tipoTransacao getTipo() {
-        return tipo;
-    }
 
     public void setTipo(Data tipo) {
         this.tipo = tipo;
