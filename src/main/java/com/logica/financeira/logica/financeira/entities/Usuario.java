@@ -22,7 +22,7 @@ public class Usuario {
     private Long id;
 
     private String nome;
-    private BigDecimal saldoAtual;
+    private BigDecimal saldoAtual = BigDecimal.ZERO;
 
     public Usuario(Long id, String nome, BigDecimal saldoAtual) {
         this.id = id;
