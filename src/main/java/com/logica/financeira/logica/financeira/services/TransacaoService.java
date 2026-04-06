@@ -7,6 +7,10 @@ import com.logica.financeira.logica.financeira.repositories.TransacaoRepository;
 import com.logica.financeira.logica.financeira.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.time.YearMonth;
 
 @Service
 public class TransacaoService {
@@ -35,5 +39,29 @@ public class TransacaoService {
         usuarioRepository.save(usuario);
 
         return transacaoRepository.save(transacao);
+    }
+
+    public BigDecimal calcularGastosPorMes(Long usuarioId, YearMonth anoMes) {
+        LocalDate inicioDoMes = anoMes.atDay(1);
+        LocalDate fimDoMes = anoMes.atEndOfMonth();
+
+        BigDecimal totalGastos = transacaoRepository.somarGastosPorPeriodo(
+                usuarioId,
+                TipoTransacao.DESPESA,
+                inicioDoMes,
+                fimDoMes
+        );
+
+        return totalGastos != null ? totalGastos : BigDecimal.ZERO;
+    }
+
+    public BigDecimal calcularMediaSemanal(Long usuarioId, YearMonth anoMes) {
+        BigDecimal gastosDoMes = calcularGastosPorMes(usuarioId, anoMes);
+
+        if (gastosDoMes.compareTo(BigDecimal.ZERO) == 0) {
+            return BigDecimal.ZERO;
+        }
+
+        return gastosDoMes.divide(new BigDecimal("4"), 2, RoundingMode.HALF_UP);
     }
 }
