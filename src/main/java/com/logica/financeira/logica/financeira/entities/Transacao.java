@@ -18,7 +18,7 @@ public class Transacao {
     private String descricao;
     private BigDecimal valor;
     private LocalDate data;
-    private String tipoTransacao;
+    private TipoTransacao tipo;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
@@ -35,7 +35,7 @@ public class Transacao {
     public Transacao() {
     }
 
-    public Transacao(Long id, String descricao, BigDecimal valor, LocalDate data, String tipo) {
+    public Transacao(Long id, String descricao, BigDecimal valor, LocalDate data, TipoTransacao tipo) {
         this.id = id;
         this.descricao = descricao;
         this.valor = valor;
@@ -71,7 +71,7 @@ public class Transacao {
         this.data = data;
     }
 
-    public tipoTransacao getTipo() {
+    public TipoTransacao getTipo() {
         return tipo;
     }
 
