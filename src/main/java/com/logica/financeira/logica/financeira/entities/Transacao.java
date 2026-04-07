@@ -3,7 +3,6 @@ package com.logica.financeira.logica.financeira.entities;
 import jakarta.persistence.*;
 
 import javax.xml.crypto.Data;
-import java.awt.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -41,7 +40,7 @@ public class Transacao {
         this.descricao = descricao;
         this.valor = valor;
         this.data = data;
-        this.tipo = tipo;
+        this.tipoTransacao = tipo;
     }
 
     public Long getId() {
