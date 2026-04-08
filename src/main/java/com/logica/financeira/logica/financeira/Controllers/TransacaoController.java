@@ -18,10 +18,8 @@ public class TransacaoController {
         @Autowired
         private TransacaoService transacaoService;
 
-
         @PostMapping
         public Transacao createTransacao(@RequestBody Transacao transacao){return transacaoService.create(transacao);}
-
 
         @GetMapping
         public List<Transacao> getAllTransacao(){return transacaoService.findAll();}
@@ -30,15 +28,14 @@ public class TransacaoController {
         public Transacao getTransacaobyid(@PathVariable Long id){
             return transacaoService.findById(id);
         }
+        
         @PutMapping("/{id}")
         public Transacao updateTransacao(@PathVariable Long id,@RequestBody Transacao transacaoDetails){
             return transacaoService.update(id,transacaoDetails);
         }
+
         @DeleteMapping("/{id}")
         public void deleteTransao(@PathVariable Long id){transacaoService.delete(id);
         }
 
-
-
     }
-

@@ -1,9 +1,9 @@
 package com.logica.financeira.logica.financeira.dtos.response;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.logica.financeira.logica.financeira.entities.enums.TipoTransacao;
 import lombok.Builder;
 
-import java.math.BigDecimal;
 @Builder
 @JsonPropertyOrder({"nome","TipoTransacao"})
 public record CategoriaDTO(

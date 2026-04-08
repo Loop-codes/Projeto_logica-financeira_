@@ -5,6 +5,7 @@ import com.logica.financeira.logica.financeira.entities.Categoria;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Function;
 
 @Service
@@ -16,6 +17,5 @@ public class CategoriaDTOMapper implements Function<Categoria, CategoriaDTO> {
                 categoria.getTipo()
             );
     }
-
 
 }

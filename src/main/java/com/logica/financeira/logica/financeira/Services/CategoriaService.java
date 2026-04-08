@@ -30,11 +30,9 @@ import static java.util.Arrays.stream;
                     .collect(Collectors.toList());
         }
 
-
         public Categoria create(Categoria categoria) {
             return categoriaRepository.save(categoria);
         }
-
 
 
         public List<Categoria> findAll () {

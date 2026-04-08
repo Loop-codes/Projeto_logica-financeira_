@@ -10,11 +10,11 @@ import java.math.BigDecimal;
 
 @Service
 public class ParcelamentoDTOMapper {
+
     @Override
     public ParcelamentoDTO apply(Parcelamento parcelamento) {
         return new ParcelamentoDTO(parcelamento.getValorTotal(),
                 parcelamento.getQuantidadeParcelas(),
                 parcelamento.getParcelas());
-
     }
 }

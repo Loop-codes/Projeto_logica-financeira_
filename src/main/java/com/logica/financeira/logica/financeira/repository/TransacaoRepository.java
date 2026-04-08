@@ -1,6 +1,6 @@
 package com.logica.financeira.logica.financeira.repository;
 
-import com.logica.financeira.logica.financeira.entities.TipoTransacao;
+import com.logica.financeira.logica.financeira.entities.enums.TipoTransacao;
 import com.logica.financeira.logica.financeira.entities.Transacao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
