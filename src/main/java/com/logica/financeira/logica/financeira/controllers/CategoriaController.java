@@ -1,13 +1,8 @@
-package com.logica.financeira.logica.financeira.Controllers;
+package com.logica.financeira.logica.financeira.controllers;
 
 import com.logica.financeira.logica.financeira.Services.CategoriaService;
-import com.logica.financeira.logica.financeira.Services.UsuarioService;
 import com.logica.financeira.logica.financeira.entities.Categoria;
-import com.logica.financeira.logica.financeira.entities.Usuario;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

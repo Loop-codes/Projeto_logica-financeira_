@@ -1,21 +1,23 @@
-package com.logica.financeira.logica.financeira.services;
+package com.logica.financeira.logica.financeira.Services;
 
+import com.logica.financeira.logica.financeira.Repositories.TransacaoRepository;
+import com.logica.financeira.logica.financeira.Repositories.UsuarioRepository;
 import com.logica.financeira.logica.financeira.entities.Transacao;
-import com.logica.financeira.logica.financeira.entities.TipoTransacao;
+import com.logica.financeira.logica.financeira.entities.enums.TipoTransacao;
 import com.logica.financeira.logica.financeira.entities.Usuario;
-import com.logica.financeira.logica.financeira.repositories.TransacaoRepository;
-import com.logica.financeira.logica.financeira.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.util.List;
 
 @Service
 public class TransacaoService {
 
     private final TransacaoRepository transacaoRepository;
+
     private final UsuarioRepository usuarioRepository;
 
     public TransacaoService(TransacaoRepository transacaoRepository, UsuarioRepository usuarioRepository) {
@@ -63,5 +65,28 @@ public class TransacaoService {
         }
 
         return gastosDoMes.divide(new BigDecimal("4"), 2, RoundingMode.HALF_UP);
+    }
+
+    public List<Transacao> findAll() {
+        return transacaoRepository.findAll();
+    }
+
+    public Transacao findById(Long id) {
+        return transacaoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Transação não encontrada pelo ID: " + id));
+    }
+
+    @Transactional
+    public Transacao update(Long id, Transacao transacaoDetails) {
+        Transacao transacaoExistente = findById(id);
+        transacaoExistente.setDescricao(transacaoDetails.getDescricao());
+        transacaoExistente.setValor(transacaoDetails.getValor());
+        transacaoExistente.setData(transacaoDetails.getData());
+        transacaoExistente.setTipo(transacaoDetails.getTipo());
+        return transacaoRepository.save(transacaoExistente);
+    }
+
+    public void delete(Long id) {
+        transacaoRepository.deleteById(id);
     }
 }
