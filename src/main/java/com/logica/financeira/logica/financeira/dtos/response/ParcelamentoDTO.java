@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 public record ParcelamentoDTO(
         BigDecimal valorTotal,
         Integer quantidadeParcelas,
-        BigDecimal valorParcela)
+        java.util.List<com.logica.financeira.logica.financeira.entities.Transacao> valorParcela)
 {
 
 }

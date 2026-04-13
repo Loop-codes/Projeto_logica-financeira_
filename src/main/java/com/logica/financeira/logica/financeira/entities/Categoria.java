@@ -1,5 +1,6 @@
 package com.logica.financeira.logica.financeira.entities;
 
+import com.logica.financeira.logica.financeira.entities.enums.TipoTransacao;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -8,12 +8,12 @@ import java.time.LocalDate;
 
 
     @Builder
-    @JsonPropertyOrder({"descricao","valor","data","tipoTransacao"})
+    @JsonPropertyOrder({"descricao","valor","data","tipo"})
     public record TransacaoDTO(
             String descricao,
             BigDecimal valor,
             LocalDate data,
-            String tipoTransacao
+            com.logica.financeira.logica.financeira.entities.enums.TipoTransacao tipo
             )
 
      {

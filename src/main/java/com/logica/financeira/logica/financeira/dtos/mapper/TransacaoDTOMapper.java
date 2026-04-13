@@ -17,4 +17,3 @@ public class TransacaoDTOMapper implements Function<Transacao,TransacaoDTO> {
                     transacao.getTipo());
         }
     }
-
