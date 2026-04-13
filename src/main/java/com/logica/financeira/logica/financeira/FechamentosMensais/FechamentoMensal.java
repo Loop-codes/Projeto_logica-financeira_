@@ -1,6 +1,7 @@
 package com.logica.financeira.logica.financeira.FechamentosMensais;
 
 
+import com.logica.financeira.logica.financeira.entities.TopDespesas;
 import com.logica.financeira.logica.financeira.entities.Transacao;
 
 import java.math.BigDecimal;
@@ -17,15 +18,22 @@ public class FechamentoMensal {
 
 
 
-            BigDecimal total = BigDecimal.ZERO;
+            BigDecimal total = service.calcularTotal(fatura);
 
             for (Transacao item : fatura) {
                 total = total.add(item.getValorGasto());
             }
-                System.out.println(total);
+            System.out.println("FECHAMENTO MENSAL: R$ " + totalGeral);
+
+            // 2. TOP DESPESAS (RANKING)
+            System.out.println("--- TOP DESPESAS ---");
+            List<Transacao> tops = service.buscarTopDespesas(fatura, 3); // Top 3
+
+            for (Transacao t : tops) {
+                System.out.println(t.getDescricao() + ": R$ " + t.getValor());
             }
 
-            public static class Transacao {
+           /* public static class Transacao {
                 private BigDecimal valorGasto;
 
                 public Transacao(BigDecimal valorGasto) {
@@ -37,7 +45,14 @@ public class FechamentoMensal {
                 }
 
 
+            */
+
             }
+                    }
 
 
-        }
+
+
+
+
+
