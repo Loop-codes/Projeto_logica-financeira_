@@ -18,4 +18,5 @@ public class CategoriaDTOMapper implements Function<Categoria, CategoriaDTO> {
             );
     }
 
+
 }

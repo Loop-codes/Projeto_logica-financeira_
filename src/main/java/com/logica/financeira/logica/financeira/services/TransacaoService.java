@@ -26,7 +26,8 @@ public class TransacaoService {
     @Transactional
     public Transacao registrarTransacao(Transacao transacao) {
 
-        Usuario usuario = usuarioRepository.findById(transacao.getUsuario().getId()).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
+        Usuario usuario = usuarioRepository.findById(transacao.getUsuario().getId())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
 
         if (transacao.getTipo() == TipoTransacao.RECEITA) {
             usuario.setSaldoAtual(usuario.getSaldoAtual().add(transacao.getValor()));

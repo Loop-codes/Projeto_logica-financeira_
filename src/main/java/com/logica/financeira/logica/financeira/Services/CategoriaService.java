@@ -21,14 +21,10 @@ import static java.util.Arrays.stream;
 
         public CategoriaDTO gfindByIdCategoriaDTO(Long id){ return categoriaRepository.findById(id)
                 .map(categoriaDTOMapper)
-                .orElseThrow(()->new RuntimeException("Usuario não encontrado" + id));}
-
-        public List<CategoriaDTO> findAllDTO(){
-            return categoriaDTOMapper.findAll()
-                    .stream()
-                    .map(categoriaDTOMapper)
-                    .collect(Collectors.toList());
+                .orElseThrow(()->new RuntimeException("Usuario não encontrado" + id));
         }
+
+
 
         public Categoria create(Categoria categoria) {
             return categoriaRepository.save(categoria);
@@ -50,6 +46,14 @@ import static java.util.Arrays.stream;
 
             return categoriaRepository.save(categoria);
         }
+
+        public List<CategoriaDTO> findAllDTO(){
+            return categoriaRepository.findAll()
+                    .stream()
+                    .map(categoriaDTOMapper)
+                    .collect(Collectors.toList());
+        }
+
         public void delete (Long id){
             categoriaRepository.deleteById(id);
         }
