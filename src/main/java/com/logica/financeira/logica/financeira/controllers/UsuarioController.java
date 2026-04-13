@@ -1,4 +1,4 @@
-package com.logica.financeira.logica.financeira.Controllers;
+package com.logica.financeira.logica.financeira.controllers;
 
 
 import com.logica.financeira.logica.financeira.Services.UsuarioService;
