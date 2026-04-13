@@ -81,6 +81,30 @@ public class Transacao {
         this.tipo = tipo;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Parcelamento getParcelamento() {
+        return parcelamento;
+    }
+
+    public void setParcelamento(Parcelamento parcelamento) {
+        this.parcelamento = parcelamento;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
