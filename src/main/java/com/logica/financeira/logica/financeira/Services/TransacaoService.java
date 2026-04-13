@@ -1,71 +1,35 @@
-package com.logica.financeira.logica.financeira.Services;
-
-import com.logica.financeira.logica.financeira.Repositories.CategoriaRepository;
 import com.logica.financeira.logica.financeira.Repositories.TransacaoRepository;
-import com.logica.financeira.logica.financeira.dtos.mapper.TransacaoDTOMapper;
-import com.logica.financeira.logica.financeira.dtos.mapper.UsuarioDTOMapper;
-import com.logica.financeira.logica.financeira.dtos.response.TransacaoDTO;
-import com.logica.financeira.logica.financeira.dtos.response.UsuarioDTO;
-import com.logica.financeira.logica.financeira.entities.Categoria;
+import com.logica.financeira.logica.financeira.dtos.response.TopDespesaDTO;
 import com.logica.financeira.logica.financeira.entities.Transacao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class TransacaoService {
 
-        @Autowired
-        private TransacaoRepository transacaoRepository;
     @Autowired
-    private TransacaoDTOMapper transacaoDTOMapper;
+    private TransacaoRepository transacaoRepository;
 
+    // MÉTODO DE FECHAMENTO MENSAL E RANKING
+    public List<TopDespesaDTO> obterTopDespesasDoMes(Long usuarioId, YearMonth anoMes) {
+        LocalDate inicio = anoMes.atDay(1);
+        LocalDate fim = anoMes.atEndOfMonth();
 
-    public TransacaoDTO gfindByIdDTO(Long id){
-        return transacaoRepository.findById(id)
-                .map(transacaoDTOMapper)
-                .orElseThrow(()->new RuntimeException("Usuario não encontrado" + id));
-    }
+        // 1. Busca do banco
+        List<Transacao> todas = transacaoRepository.findByUsuarioIdAndDataBetween(usuarioId, inicio, fim);
 
-
-    public List<TransacaoDTO> findAllDTO(){
-        return transacaoRepository.findAll()
-                .stream()
-                .map(transacaoDTOMapper)
+        // 2. Transforma em DTO, ordena pelo valor e pega as 5 maiores
+        return todas.stream()
+                .filter(t -> t.getTipoTransacao() == TipoTransacao.DESPESA)
+                .sorted(Comparator.comparing(Transacao::getValor).reversed())
+                .limit(5)
+                .map(t -> new TopDespesaDTO(t.getDescricao(), t.getValor()))
                 .collect(Collectors.toList());
     }
-
-
-        public Transacao create(Transacao categoria) {
-            return transacaoRepository.save(categoria);
-        }
-
-        public List<Transacao> findAll () {
-            return transacaoRepository.findAll();
-        }
-
-        public Transacao findById (Long id){
-            return transacaoRepository.findById(id)
-                    .orElseThrow(() -> new RuntimeException("Categoria not finded"));
-        }
-        public Transacao update (Long id, Transacao transacaoDetails){
-            Transacao transacao = findById((id));
-            transacao.setDescricao(transacaoDetails.getDescricao());
-            transacao.setValor(transacaoDetails.getValor());
-            transacao.setData(transacaoDetails.getData());
-            transacao.setTipo(transacaoDetails.getTipo());
-
-
-            return transacaoRepository.save(transacao);
-        }
-        public void delete (Long id){
-            transacaoRepository.deleteById(id);
-        }
-
-    }
-
-
-
 }
