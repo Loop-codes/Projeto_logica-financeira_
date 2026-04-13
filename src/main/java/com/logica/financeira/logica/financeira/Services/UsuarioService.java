@@ -13,12 +13,12 @@ import java.util.stream.Collectors;
 
 @Service
     public class UsuarioService {
+
     @Autowired
     private UsuarioRepository usuarioRepository;
 
     @Autowired
     private UsuarioDTOMapper usuarioDTOMapper;
-
 
     public UsuarioDTO gfindByIdDTO(Long id){
         return usuarioRepository.findById(id)

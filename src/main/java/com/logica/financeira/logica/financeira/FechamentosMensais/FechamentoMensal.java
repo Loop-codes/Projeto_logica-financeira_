@@ -14,7 +14,7 @@ public class FechamentoMensal {
 
             List<Transacao> fatura = new ArrayList<>();
 
-            fatura.addAll();/*<---- Adicionar o caminho do banco aqui*/
+            // TODO: Injetar TransacaoRepository fatura.addAll();
 
 
 

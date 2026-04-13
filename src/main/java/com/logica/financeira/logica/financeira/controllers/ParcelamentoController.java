@@ -1,9 +1,7 @@
-package com.logica.financeira.logica.financeira.Controllers;
+package com.logica.financeira.logica.financeira.controllers;
 
 import com.logica.financeira.logica.financeira.Services.ParcelamentoService;
-import com.logica.financeira.logica.financeira.Services.UsuarioService;
 import com.logica.financeira.logica.financeira.entities.Parcelamento;
-import com.logica.financeira.logica.financeira.entities.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
