@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: logica_financeira_db
+    environment:
+      POSTGRES_DB: logica_financeira
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - lgcfin-network
+
+    api:
+      build: .
+      container_name: logica_financeira
+      environment:
+        SPRING_PROFILES_ACTIVE: docker
+      ports:
+        - "8080:8080"
+      depends_on:
+        - db
+      networks:
+        - lgcfin_network
+
+networks:
+  lgc_network:
+    driver: bridge
