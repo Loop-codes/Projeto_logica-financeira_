@@ -1,6 +1,9 @@
 package com.logica.financeira.logica.financeira.entities;
 
+import com.logica.financeira.logica.financeira.entities.enums.TipoTransacao;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.xml.crypto.Data;
 import java.math.BigDecimal;
@@ -18,7 +21,11 @@ public class Transacao {
     private String descricao;
     private BigDecimal valor;
     private LocalDate data;
-    private String tipoTransacao;
+
+    @Getter
+    @Setter
+    @Enumerated(EnumType.STRING)
+    private TipoTransacao tipo;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
@@ -35,12 +42,13 @@ public class Transacao {
     public Transacao() {
     }
 
-    public Transacao(Long id, String descricao, BigDecimal valor, LocalDate data, String tipo) {
+    public Transacao(Long id, String descricao, BigDecimal valor, LocalDate data, TipoTransacao tipo) {
         this.id = id;
         this.descricao = descricao;
         this.valor = valor;
         this.data = data;
-        this.tipoTransacao = tipo;
+        this.tipo = tipo;
+
     }
 
     public Long getId() {
@@ -69,14 +77,6 @@ public class Transacao {
 
     public void setData(LocalDate data) {
         this.data = data;
-    }
-
-    public tipoTransacao getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(Data tipo) {
-        this.tipo = tipo;
     }
 
     @Override

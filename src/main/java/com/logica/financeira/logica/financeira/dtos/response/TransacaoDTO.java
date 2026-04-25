@@ -13,7 +13,7 @@ import java.time.LocalDate;
             String descricao,
             BigDecimal valor,
             LocalDate data,
-            String tipoTransacao
+            com.logica.financeira.logica.financeira.entities.enums.TipoTransacao tipoTransacao
             )
 
      {

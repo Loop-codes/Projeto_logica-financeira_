@@ -1,7 +1,9 @@
 package com.logica.financeira.logica.financeira.entities;
 
+import com.logica.financeira.logica.financeira.entities.enums.TipoTransacao;
 import jakarta.persistence.*;
 import lombok.*;
+
 
 @Entity
 @Table(name = "tb_categoria")

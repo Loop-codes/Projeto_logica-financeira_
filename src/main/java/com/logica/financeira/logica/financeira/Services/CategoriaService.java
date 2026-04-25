@@ -24,7 +24,7 @@ import static java.util.Arrays.stream;
                 .orElseThrow(()->new RuntimeException("Usuario não encontrado" + id));}
 
         public List<CategoriaDTO> findAllDTO(){
-            return categoriaDTOMapper.findAll()
+            return categoriaRepository.findAll()
                     .stream()
                     .map(categoriaDTOMapper)
                     .collect(Collectors.toList());

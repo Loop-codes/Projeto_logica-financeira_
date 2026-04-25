@@ -4,6 +4,7 @@ import com.logica.financeira.logica.financeira.dtos.response.CategoriaDTO;
 import com.logica.financeira.logica.financeira.entities.Categoria;
 import org.springframework.stereotype.Service;
 
+
 import java.util.Arrays;
 import java.util.function.Function;
 
